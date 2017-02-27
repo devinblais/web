@@ -209,3 +209,13 @@ section {
     margin: $spacing*1.5 0;
   }
 }
+
+footer {
+  text-align: center;
+  color: $gray;
+  display: none;
+
+  @include print {
+    display: block;
+  }
+}

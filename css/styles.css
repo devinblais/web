@@ -141,3 +141,11 @@ section {
     padding: 0; }
   .sub-section li {
     margin: 12px 0; }
+
+footer {
+  text-align: center;
+  color: #9F9F9F;
+  display: none; }
+  @media print {
+    footer {
+      display: block; } }
