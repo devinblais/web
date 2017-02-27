@@ -1,0 +1,211 @@
+$blue: #87D0DF;
+$gray: #9F9F9F;
+$black: #152224;
+$light-gray: #EEEEEE;
+$spacing: 8px;
+
+$tablet-width: 700px;
+$desktop-width: 1200px;
+
+@mixin robo-font-light {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+@mixin robo-font-med {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+@mixin print {
+    @media print {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+html {
+  background: $blue url('../images/me.png') top right no-repeat fixed;
+  color: $black;
+  font-size: 18px;
+  font-family: Georgia, serif
+}
+
+body {
+  margin: 0;
+}
+
+a {
+    color: $blue;
+    text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+  @include robo-font-light;
+  font-size: 150px;
+  color: $black;
+  @include print {
+      font-size: 40px;
+  }
+}
+
+h2 {
+  @include robo-font-light;
+  color: $blue;
+  font-size: 100px;
+  margin: 0;
+  @include print {
+      font-size: 40px;
+  }
+}
+
+h3 {
+  @include robo-font-med;
+  color: $blue;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+h4 {
+  @include robo-font-med;
+  color: $black;
+  margin: 0;
+  font-size: 20px;
+}
+
+#resume {
+  background: #FFFFFC;
+  max-width: 800px;
+  margin: $spacing*37 auto 95vh;
+  box-shadow: -50px 75px 100px 0 rgba(0, 0, 0, 0.29);
+  position: relative;
+  z-index: 2;
+  padding: $spacing * 3;
+
+  @include print {
+    box-shadow: none;
+  }
+
+  @include desktop {
+    margin: $spacing*12 auto;
+  }
+
+  @include print {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+  }
+}
+
+header {
+  display: flex;
+  width: 100%;
+
+  @include print {
+      margin-bottom: -70px;
+  }
+}
+
+.name {
+    flex: 2;
+
+    h1 {
+      margin-bottom: -45px;
+
+      @include print {
+        margin-bottom: 0;
+        display: inline-block;
+      }
+    }
+
+    h2 {
+        letter-spacing: 37px;
+        margin-left: 5px;
+
+        @include print {
+          letter-spacing: 0;
+          display: inline-block;
+          margin-left: -6px;
+        }
+    }
+}
+
+.info {
+  flex: 1;
+  text-align: right;
+  color: $gray;
+  font-size: 20px;
+  @include robo-font-light;
+}
+
+section {
+  border-left: 2px solid $light-gray;
+  padding: 0 $spacing*2;
+  margin-bottom: $spacing * 7;
+  margin-left: $spacing * 2;
+  margin-top: $spacing * 11;
+
+  h3 {
+    margin-left: -21px;
+    margin-top: $spacing * -5;
+    position: absolute;
+  }
+}
+
+.icon {
+  @include print {
+    display: none;
+  }
+
+  svg {
+    border-radius: 4px;
+    fill : #FFFFFF;
+    width: 32px;
+    height: 32px;
+    margin-top: $spacing;
+  }
+
+  &.linkedin svg {
+    background: #0077B5;
+  }
+
+  &.twitter svg {
+      background: #55ACEE;
+  }
+}
+
+.date {
+  color: $blue;
+}
+
+.sub-section {
+  margin-bottom: $spacing*5;
+  @include print {
+    margin-bottom: $spacing*2;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: $spacing 0 0;
+    padding: 0;
+  }
+
+  li {
+    margin: $spacing*1.5 0;
+  }
+}
