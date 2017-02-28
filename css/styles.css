@@ -1,5 +1,5 @@
 html {
-  background: #87D0DF url("../images/me.png") top right no-repeat fixed;
+  background: #87D0DF;
   color: #152224;
   font-size: 18px;
   font-family: Georgia, serif; }
@@ -44,6 +44,11 @@ h4 {
   color: #152224;
   margin: 0;
   font-size: 20px; }
+
+.me {
+  position: fixed;
+  top: 0;
+  right: 0; }
 
 #resume {
   background: #FFFFFC;
