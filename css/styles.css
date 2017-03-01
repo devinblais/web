@@ -49,6 +49,9 @@ h4 {
   position: fixed;
   top: 0;
   right: 0; }
+  @media print {
+    .me {
+      display: none; } }
 
 #resume {
   background: #FFFFFC;
@@ -154,3 +157,7 @@ footer {
   @media print {
     footer {
       display: block; } }
+
+@media print {
+  .side-projects {
+    display: none; } }
