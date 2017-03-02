@@ -114,16 +114,16 @@ h4 {
   @include print {
     margin: 0;
     max-width: none;
-    width: 100%;
   }
 }
 
 header {
   display: flex;
   width: 100%;
+  margin-bottom: $spacing * 6;
 
   @include print {
-    margin-bottom: -70px;
+    margin-bottom: -$spacing*3;
   }
 }
 
@@ -166,6 +166,10 @@ section {
   margin-left: $spacing * 2;
   margin-top: $spacing * 11;
 
+  @include print {
+      margin-top: $spacing * 5
+  }
+
   h3 {
     margin-left: -21px;
     margin-top: $spacing * -5;
@@ -201,6 +205,7 @@ section {
 
 .sub-section {
   margin-bottom: $spacing*5;
+  position: relative;
   @include print {
     margin-bottom: $spacing*2;
   }
@@ -224,14 +229,31 @@ footer {
   text-align: center;
   color: $gray;
   display: none;
+  margin-top: -$spacing*4;
 
   @include print {
     display: block;
   }
 }
 
-.side-projects {
+.print-hide {
   @include print {
     display: none;
+  }
+}
+
+.technologies {
+  position: relative;
+  right: 0;
+  top: 0;
+  font-size: 14px;
+  color: $gray;
+
+  @include desktop {
+    position: absolute;
+  }
+
+  @include print {
+    position: absolute;
   }
 }

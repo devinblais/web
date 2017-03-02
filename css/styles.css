@@ -70,15 +70,15 @@ h4 {
   @media print {
     #resume {
       margin: 0;
-      max-width: none;
-      width: 100%; } }
+      max-width: none; } }
 
 header {
   display: flex;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 48px; }
   @media print {
     header {
-      margin-bottom: -70px; } }
+      margin-bottom: -24px; } }
 
 .name {
   flex: 2; }
@@ -111,6 +111,9 @@ section {
   margin-bottom: 56px;
   margin-left: 16px;
   margin-top: 88px; }
+  @media print {
+    section {
+      margin-top: 40px; } }
   section h3 {
     margin-left: -21px;
     margin-top: -40px;
@@ -137,7 +140,8 @@ section {
   color: #87D0DF; }
 
 .sub-section {
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  position: relative; }
   @media print {
     .sub-section {
       margin-bottom: 16px; } }
@@ -153,11 +157,25 @@ section {
 footer {
   text-align: center;
   color: #9F9F9F;
-  display: none; }
+  display: none;
+  margin-top: -32px; }
   @media print {
     footer {
       display: block; } }
 
 @media print {
-  .side-projects {
+  .print-hide {
     display: none; } }
+
+.technologies {
+  position: relative;
+  right: 0;
+  top: 0;
+  font-size: 14px;
+  color: #9F9F9F; }
+  @media (min-width: 1200px) {
+    .technologies {
+      position: absolute; } }
+  @media print {
+    .technologies {
+      position: absolute; } }
