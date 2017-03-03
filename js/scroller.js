@@ -58,7 +58,35 @@ function Game(player, canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext("2d");
   this.obstacles = [];
+  this.loadMe = {font: false, images: false};
+  this.loaded = false;
+  this.alpha = 0;
+}
 
+Game.prototype.fadeIn = function() {
+  this.alpha += .01;
+  this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+
+  this.ctx.font = '48px VT323';
+  this.ctx.fillText('Bored?', 10, 50);
+
+    if (this.alpha >=1) {
+        this.ctx.globalAlpha = 1;
+    } else {
+        this.ctx.globalAlpha = this.alpha;
+        window.requestAnimationFrame(this.fadeIn.bind(this))
+    }
+
+}
+
+Game.prototype.loading = function() {
+  var fontLoaded = document.documentElement.className.match('wf-vt323-n4-active');
+  if (fontLoaded) {
+      //startGame();
+      this.fadeIn();
+  } else {
+    window.requestAnimationFrame(this.loading.bind(this));
+  }
 }
 
 Game.prototype.detectCollision = function(obj1, obj2) {
@@ -92,10 +120,26 @@ Game.prototype.detectCollision = function(obj1, obj2) {
     return detectXOverlap(obj1, obj2) && detectYOverlap(obj1, obj2);
 };
 
+Game.prototype.gameOver = function() {
+  this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+  this.ctx.font = '48px VT323';
+  this.ctx.fillText('Game Over!', 10, 50);
+
+  this.canvas.addEventListener('click', function(e) {
+      console.log("CLICK")
+      if (e.offsetX < 125 && e.offsetX > 10 ) {
+          console.log("CALLE")
+          this.obstacles = [];
+          this.render(0);
+      }
+  }.bind(this))
+}
+
 
 Game.prototype.render = function(timestamp) {
   for(var i=0;i<this.obstacles.length;i++) {
     if (this.detectCollision(this.obstacles[i], this.player)) {
+      this.gameOver();
       return;
     }
   }
@@ -107,6 +151,9 @@ Game.prototype.render = function(timestamp) {
 
   var timePassed = this.lastTimestamp ? timestamp - this.lastTimestamp : 0;
   this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+
+  this.ctx.font = '48px VT323';
+  this.ctx.fillText('<Spacebar to jump>', 10, 50);
 
   this.player.updateStride(timestamp);
   this.player.draw(timePassed);
@@ -132,8 +179,8 @@ Game.prototype.render = function(timestamp) {
 }
 
 function Rock(c) {
-  this.height = Math.random() * 30 + 5
-  this.width = Math.random() * 30 + 5
+  this.height = Math.random() * 30 + 5;
+  this.width = Math.random() * 30 + 5;
   this.x = 800;
   this.y = c.height - this.height;
   this.vx = -5;
@@ -149,24 +196,35 @@ Rock.prototype.render = function(timepassed) {
   this.ctx.stroke();
 };
 
+
 window.onload = function() {
     var c=document.getElementById("canvas");
     var img = document.createElement('img');
+
     img.onload = function() {
       var db = new Player(c, img);
       var game = new Game(db, c);
+      game.loading();
+      function startGame() {
+          game.render();
+          c.removeEventListener('click', startOnClick);
 
-      window.startGame = function() {
-        game.render();
-
-        document.onkeydown = function(e) {
-            if (e.which == 32 ) {
-              e.preventDefault();
-              db.jump();
-            }
-        };
+          document.onkeydown = function(e) {
+              if (e.which == 32 ) {
+                  e.preventDefault();
+                  db.jump();
+              }
+          };
       }
-    };
+
+      function startOnClick (e) {
+        if (e.offsetX < 125 && e.offsetX > 10 ) {
+          startGame();
+        }
+      }
+
+      c.addEventListener('click', startOnClick);
+    }
 
     img.src = "./images/walk.png";
 };
