@@ -248,6 +248,7 @@ footer {
   top: 0;
   font-size: 14px;
   color: $gray;
+  line-height: 28px;
 
   @include desktop {
     position: absolute;

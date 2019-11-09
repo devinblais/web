@@ -172,7 +172,8 @@ footer {
   right: 0;
   top: 0;
   font-size: 14px;
-  color: #9F9F9F; }
+  color: #9F9F9F;
+  line-height: 28px; }
   @media (min-width: 1200px) {
     .technologies {
       position: absolute; } }
