@@ -167,7 +167,8 @@ section {
   margin-top: $spacing * 11;
 
   @include print {
-      margin-top: $spacing * 5
+    margin-top: $spacing * 5;
+    font-size: 14px;
   }
 
   h3 {
